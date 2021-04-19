@@ -31,7 +31,7 @@ class PageTurnEffect extends CustomPainter {
     required this.image,
     this.backgroundColor,
     this.radius = 0.18,
-  })  : assert(amount != null && image != null && radius != null),
+  })  : assert(amount != null && image != null),
         super(repaint: amount);
 
   final Animation<double>? amount;

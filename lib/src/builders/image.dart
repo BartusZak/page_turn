@@ -65,7 +65,6 @@ class _PageTurnImageState extends State<PageTurnImage> {
   void _resolveImage() {
     final ImageStream newStream =
         widget.image!.resolve(createLocalImageConfiguration(context));
-    assert(newStream != null);
     _updateSourceStream(newStream);
   }
 
@@ -77,7 +76,7 @@ class _PageTurnImageState extends State<PageTurnImage> {
   // registration from the old stream to the new stream (if a listener was
   // registered).
   void _updateSourceStream(ImageStream newStream) {
-    if (_imageStream?.key == newStream?.key) return;
+    if (_imageStream?.key == newStream.key) return;
 
     if (_isListeningToStream) _imageStream!.removeListener(_imageListener);
 
