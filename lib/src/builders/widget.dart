@@ -7,15 +7,15 @@ import '../effects/index.dart';
 
 class PageTurnWidget extends StatefulWidget {
   const PageTurnWidget({
-    Key key,
+    Key? key,
     this.amount,
     this.backgroundColor = const Color(0xFFFFFFCC),
     this.child,
   }) : super(key: key);
 
-  final Animation<double> amount;
+  final Animation<double>? amount;
   final Color backgroundColor;
-  final Widget child;
+  final Widget? child;
 
   @override
   _PageTurnWidgetState createState() => _PageTurnWidgetState();
@@ -23,7 +23,7 @@ class PageTurnWidget extends StatefulWidget {
 
 class _PageTurnWidgetState extends State<PageTurnWidget> {
   final _boundaryKey = GlobalKey();
-  ui.Image _image;
+  ui.Image? _image;
 
   @override
   void didUpdateWidget(PageTurnWidget oldWidget) {
@@ -36,7 +36,7 @@ class _PageTurnWidgetState extends State<PageTurnWidget> {
   void _captureImage(Duration timeStamp) async {
     final pixelRatio = MediaQuery.of(context).devicePixelRatio;
     final boundary =
-        _boundaryKey.currentContext.findRenderObject() as RenderRepaintBoundary;
+        _boundaryKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
     if (boundary.debugNeedsPaint) {
       await Future.delayed(const Duration(milliseconds: 20));
       return _captureImage(timeStamp);
@@ -57,7 +57,7 @@ class _PageTurnWidgetState extends State<PageTurnWidget> {
         size: Size.infinite,
       );
     } else {
-      WidgetsBinding.instance.addPostFrameCallback(_captureImage);
+      WidgetsBinding.instance!.addPostFrameCallback(_captureImage);
       return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           final size = constraints.biggest;
